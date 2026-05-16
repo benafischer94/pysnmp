@@ -43,6 +43,7 @@ jobs:
           uv run mibdump --generate-mib-texts IF-MIB
           uv run mibdump --generate-mib-texts LEXTUDIO-TEST-MIB
           uv run mibdump --generate-mib-texts CISCO-ENHANCED-IPSEC-FLOW-MIB
+          uv run mibdump --generate-mib-texts TCP-MIB
       - name: Test
         uses: nick-fields/retry@v3
         with:
