@@ -790,7 +790,10 @@ class MibScalarInstance(MibTree):
 
     def setValue(self, value, name, **context):
         if value is None:
-            value = univ.noValue
+            # Return the column default. Using noValue triggers PyAsn1Error for
+            # types (e.g. TestAndIncr) whose setValue() does an __ne__ comparison
+            # against the value before accepting it. clone() with no args is safe.
+            return self.syntax.clone()
 
         try:
             if hasattr(self.syntax, "setValue"):
